@@ -9113,7 +9113,7 @@ var _elm_lang$http$Http$StringPart = F2(
 	});
 var _elm_lang$http$Http$stringPart = _elm_lang$http$Http$StringPart;
 
-var _evancz$elm_html$Algolia_Api$formatUrl = function (config) {
+var _kaashyapan$algolia_client$Algolia_Api$formatUrl = function (config) {
 	return A2(
 		_elm_lang$core$Basics_ops['++'],
 		'https://',
@@ -9122,21 +9122,21 @@ var _evancz$elm_html$Algolia_Api$formatUrl = function (config) {
 			config.appId,
 			A2(_elm_lang$core$Basics_ops['++'], '-dsn.algolia.net/', '1/')));
 };
-var _evancz$elm_html$Algolia_Api$encodeFloatList = function (ls) {
+var _kaashyapan$algolia_client$Algolia_Api$encodeFloatList = function (ls) {
 	return A2(
 		_elm_lang$core$Json_Encode$encode,
 		0,
 		_elm_lang$core$Json_Encode$list(
 			A2(_elm_lang$core$List$map, _elm_lang$core$Json_Encode$float, ls)));
 };
-var _evancz$elm_html$Algolia_Api$encodeList = function (ls) {
+var _kaashyapan$algolia_client$Algolia_Api$encodeList = function (ls) {
 	return A2(
 		_elm_lang$core$Json_Encode$encode,
 		0,
 		_elm_lang$core$Json_Encode$list(
 			A2(_elm_lang$core$List$map, _elm_lang$core$Json_Encode$string, ls)));
 };
-var _evancz$elm_html$Algolia_Api$getSearchString = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$getSearchString = function (a) {
 	var _p0 = a;
 	switch (_p0.ctor) {
 		case 'Query':
@@ -9145,12 +9145,12 @@ var _evancz$elm_html$Algolia_Api$getSearchString = function (a) {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'attributesToRetrieve=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'RestrictSearchableAttributes':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'restrictSearchableAttributes=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'Filters':
 			return A2(_elm_lang$core$Basics_ops['++'], 'filters=', _p0._0);
 		case 'Facets':
@@ -9159,7 +9159,7 @@ var _evancz$elm_html$Algolia_Api$getSearchString = function (a) {
 				return A2(
 					_elm_lang$core$Basics_ops['++'],
 					'facets=',
-					_evancz$elm_html$Algolia_Api$encodeList(_p1._0));
+					_kaashyapan$algolia_client$Algolia_Api$encodeList(_p1._0));
 			} else {
 				return 'facets=*';
 			}
@@ -9172,7 +9172,7 @@ var _evancz$elm_html$Algolia_Api$getSearchString = function (a) {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'facetFilters=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'FacetingAfterDistinct':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
@@ -9185,7 +9185,7 @@ var _evancz$elm_html$Algolia_Api$getSearchString = function (a) {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'optionalFilters=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'SortFacetValuesBy':
 			return A2(_elm_lang$core$Basics_ops['++'], 'sortFacetValuesBy=', _p0._0);
 		case 'SumOrFiltersScores':
@@ -9200,12 +9200,12 @@ var _evancz$elm_html$Algolia_Api$getSearchString = function (a) {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'attributesToHighlight=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'AttributesToSnippet':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'attributesToSnippet=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'HighlightPreTag':
 			return A2(_elm_lang$core$Basics_ops['++'], 'highlightPreTag=', _p0._0);
 		case 'HighlightPostTag':
@@ -9279,47 +9279,47 @@ var _evancz$elm_html$Algolia_Api$getSearchString = function (a) {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'disableTypoToleranceOnAttributes=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'OptionalWords':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'optionalWords=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'DisableExactOnAttributes':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'disableExactOnAttributes=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'AlternativesAsExact':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'alternativesAsExact=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'RuleContexts':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'ruleContexts=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'ResponseFields':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'responseFields=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'NumericFilters':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'numericFilters=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'TagFilters':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'tagFilters=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'AnalyticsTags':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'analyticsTags=',
-				_evancz$elm_html$Algolia_Api$encodeList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeList(_p0._0));
 		case 'AroundLatLng':
 			return A2(_elm_lang$core$Basics_ops['++'], 'aroundLatLng=', _p0._0);
 		case 'AllowTyposOnNumericTokens':
@@ -9398,12 +9398,12 @@ var _evancz$elm_html$Algolia_Api$getSearchString = function (a) {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'insideBoundingBox=',
-				_evancz$elm_html$Algolia_Api$encodeFloatList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeFloatList(_p0._0));
 		case 'InsidePolygon':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				'insidePolygon=',
-				_evancz$elm_html$Algolia_Api$encodeFloatList(_p0._0));
+				_kaashyapan$algolia_client$Algolia_Api$encodeFloatList(_p0._0));
 		case 'TypoTolerance':
 			var _p2 = _p0._0;
 			switch (_p2.ctor) {
@@ -9427,7 +9427,7 @@ var _evancz$elm_html$Algolia_Api$getSearchString = function (a) {
 					return A2(
 						_elm_lang$core$Basics_ops['++'],
 						'ignorePlural=',
-						_evancz$elm_html$Algolia_Api$encodeList(_p3._0));
+						_kaashyapan$algolia_client$Algolia_Api$encodeList(_p3._0));
 			}
 		case 'AroundRadius':
 			var _p4 = _p0._0;
@@ -9472,7 +9472,7 @@ var _evancz$elm_html$Algolia_Api$getSearchString = function (a) {
 					return A2(
 						_elm_lang$core$Basics_ops['++'],
 						'removeStopWordsList=',
-						_evancz$elm_html$Algolia_Api$encodeList(_p7._0));
+						_kaashyapan$algolia_client$Algolia_Api$encodeList(_p7._0));
 			}
 		default:
 			var _p8 = _p0._0;
@@ -9486,7 +9486,7 @@ var _evancz$elm_html$Algolia_Api$getSearchString = function (a) {
 			}
 	}
 };
-var _evancz$elm_html$Algolia_Api$formatParams = function (params) {
+var _kaashyapan$algolia_client$Algolia_Api$formatParams = function (params) {
 	return A3(
 		_elm_lang$core$List$foldl,
 		F2(
@@ -9500,11 +9500,11 @@ var _evancz$elm_html$Algolia_Api$formatParams = function (params) {
 			A2(
 				_elm_lang$core$List$map,
 				function (a) {
-					return _evancz$elm_html$Algolia_Api$getSearchString(a);
+					return _kaashyapan$algolia_client$Algolia_Api$getSearchString(a);
 				},
 				params)));
 };
-var _evancz$elm_html$Algolia_Api$getParams = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$getParams = function (a) {
 	var _p9 = a;
 	if (_p9.ctor === 'Just') {
 		return _elm_lang$core$Json_Encode$object(
@@ -9514,7 +9514,7 @@ var _evancz$elm_html$Algolia_Api$getParams = function (a) {
 					ctor: '_Tuple2',
 					_0: 'params',
 					_1: _elm_lang$core$Json_Encode$string(
-						_evancz$elm_html$Algolia_Api$formatParams(_p9._0))
+						_kaashyapan$algolia_client$Algolia_Api$formatParams(_p9._0))
 				},
 				_1: {ctor: '[]'}
 			});
@@ -9522,8 +9522,8 @@ var _evancz$elm_html$Algolia_Api$getParams = function (a) {
 		return _elm_lang$core$Json_Encode$null;
 	}
 };
-var _evancz$elm_html$Algolia_Api$formRqst = function (config) {
-	var urlDsn = _evancz$elm_html$Algolia_Api$formatUrl(config);
+var _kaashyapan$algolia_client$Algolia_Api$formRqst = function (config) {
+	var urlDsn = _kaashyapan$algolia_client$Algolia_Api$formatUrl(config);
 	var _p10 = config.api;
 	switch (_p10.ctor) {
 		case 'SearchAnIndex':
@@ -9537,7 +9537,7 @@ var _evancz$elm_html$Algolia_Api$formRqst = function (config) {
 						'indexes/',
 						A2(_elm_lang$core$Basics_ops['++'], _p11.indexName, '/query'))),
 				body: _elm_lang$http$Http$jsonBody(
-					_evancz$elm_html$Algolia_Api$getParams(_p11.params)),
+					_kaashyapan$algolia_client$Algolia_Api$getParams(_p11.params)),
 				httpMethod: 'POST'
 			};
 		case 'SearchAnIndexAlternative':
@@ -9545,7 +9545,7 @@ var _evancz$elm_html$Algolia_Api$formRqst = function (config) {
 			var params = A2(
 				_elm_lang$core$Json_Encode$encode,
 				0,
-				_evancz$elm_html$Algolia_Api$getParams(_p12.params));
+				_kaashyapan$algolia_client$Algolia_Api$getParams(_p12.params));
 			return {
 				url: A2(
 					_elm_lang$core$Basics_ops['++'],
@@ -9579,7 +9579,7 @@ var _evancz$elm_html$Algolia_Api$formRqst = function (config) {
 									_0: {
 										ctor: '_Tuple2',
 										_0: 'params',
-										_1: _evancz$elm_html$Algolia_Api$getParams(a.params)
+										_1: _kaashyapan$algolia_client$Algolia_Api$getParams(a.params)
 									},
 									_1: {ctor: '[]'}
 								}
@@ -9658,7 +9658,7 @@ var _evancz$elm_html$Algolia_Api$formRqst = function (config) {
 							_0: {
 								ctor: '_Tuple2',
 								_0: 'params',
-								_1: _evancz$elm_html$Algolia_Api$getParams(_p17.searchRecord.params)
+								_1: _kaashyapan$algolia_client$Algolia_Api$getParams(_p17.searchRecord.params)
 							},
 							_1: {ctor: '[]'}
 						},
@@ -9726,7 +9726,7 @@ var _evancz$elm_html$Algolia_Api$formRqst = function (config) {
 						'indexes/',
 						A2(_elm_lang$core$Basics_ops['++'], _p20.indexName, '/deleteByQuery'))),
 				body: _elm_lang$http$Http$jsonBody(
-					_evancz$elm_html$Algolia_Api$getParams(_p20.params)),
+					_kaashyapan$algolia_client$Algolia_Api$getParams(_p20.params)),
 				httpMethod: 'POST'
 			};
 		case 'PartiallyUpdateAnObject':
@@ -9893,7 +9893,7 @@ var _evancz$elm_html$Algolia_Api$formRqst = function (config) {
 							_p28.searchRecord.indexName,
 							A2(_elm_lang$core$Basics_ops['++'], '/settings', forwardToReplicas)))),
 				body: _elm_lang$http$Http$jsonBody(
-					_evancz$elm_html$Algolia_Api$getParams(_p28.searchRecord.params)),
+					_kaashyapan$algolia_client$Algolia_Api$getParams(_p28.searchRecord.params)),
 				httpMethod: 'POST'
 			};
 		case 'ClearIndex':
@@ -9990,267 +9990,267 @@ var _evancz$elm_html$Algolia_Api$formRqst = function (config) {
 			};
 	}
 };
-var _evancz$elm_html$Algolia_Api$SearchRecord = F2(
+var _kaashyapan$algolia_client$Algolia_Api$SearchRecord = F2(
 	function (a, b) {
 		return {indexName: a, params: b};
 	});
-var _evancz$elm_html$Algolia_Api$ReplaceSynonymsInHighlight = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$ReplaceSynonymsInHighlight = function (a) {
 	return {ctor: 'ReplaceSynonymsInHighlight', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$Synonyms = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$Synonyms = function (a) {
 	return {ctor: 'Synonyms', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AnalyticsTags = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AnalyticsTags = function (a) {
 	return {ctor: 'AnalyticsTags', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$Analytics = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$Analytics = function (a) {
 	return {ctor: 'Analytics', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$TagFilters = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$TagFilters = function (a) {
 	return {ctor: 'TagFilters', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$NumericFilters = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$NumericFilters = function (a) {
 	return {ctor: 'NumericFilters', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$GetRankingInfo = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$GetRankingInfo = function (a) {
 	return {ctor: 'GetRankingInfo', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$Distinct = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$Distinct = function (a) {
 	return {ctor: 'Distinct', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$PercentileComputation = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$PercentileComputation = function (a) {
 	return {ctor: 'PercentileComputation', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$MaxFacetHits = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$MaxFacetHits = function (a) {
 	return {ctor: 'MaxFacetHits', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$ResponseFields = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$ResponseFields = function (a) {
 	return {ctor: 'ResponseFields', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$MinProximity = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$MinProximity = function (a) {
 	return {ctor: 'MinProximity', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$RuleContexts = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$RuleContexts = function (a) {
 	return {ctor: 'RuleContexts', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$EnableRules = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$EnableRules = function (a) {
 	return {ctor: 'EnableRules', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AlternativesAsExact = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AlternativesAsExact = function (a) {
 	return {ctor: 'AlternativesAsExact', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$ExactOnSingleWordQuery = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$ExactOnSingleWordQuery = function (a) {
 	return {ctor: 'ExactOnSingleWordQuery', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$DisableExactOnAttributes = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$DisableExactOnAttributes = function (a) {
 	return {ctor: 'DisableExactOnAttributes', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$RemoveStopWords = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$RemoveStopWords = function (a) {
 	return {ctor: 'RemoveStopWords', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$OptionalWords = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$OptionalWords = function (a) {
 	return {ctor: 'OptionalWords', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AdvancedSyntax = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AdvancedSyntax = function (a) {
 	return {ctor: 'AdvancedSyntax', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$RemoveWordsIfNoResults = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$RemoveWordsIfNoResults = function (a) {
 	return {ctor: 'RemoveWordsIfNoResults', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$QueryType = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$QueryType = function (a) {
 	return {ctor: 'QueryType', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$InsidePolygon = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$InsidePolygon = function (a) {
 	return {ctor: 'InsidePolygon', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$InsideBoundingBox = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$InsideBoundingBox = function (a) {
 	return {ctor: 'InsideBoundingBox', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$MinimumAroundRadius = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$MinimumAroundRadius = function (a) {
 	return {ctor: 'MinimumAroundRadius', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AroundPrecision = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AroundPrecision = function (a) {
 	return {ctor: 'AroundPrecision', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AroundRadius = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AroundRadius = function (a) {
 	return {ctor: 'AroundRadius', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AroundLatLngViaIP = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AroundLatLngViaIP = function (a) {
 	return {ctor: 'AroundLatLngViaIP', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AroundLatLng = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AroundLatLng = function (a) {
 	return {ctor: 'AroundLatLng', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$DisableTypoToleranceOnAttributes = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$DisableTypoToleranceOnAttributes = function (a) {
 	return {ctor: 'DisableTypoToleranceOnAttributes', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$IgnorePlurals = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$IgnorePlurals = function (a) {
 	return {ctor: 'IgnorePlurals', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AllowTyposOnNumericTokens = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AllowTyposOnNumericTokens = function (a) {
 	return {ctor: 'AllowTyposOnNumericTokens', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$TypoTolerance = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$TypoTolerance = function (a) {
 	return {ctor: 'TypoTolerance', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$MinWordSizefor2Typos = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$MinWordSizefor2Typos = function (a) {
 	return {ctor: 'MinWordSizefor2Typos', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$MinWordSizefor1Typo = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$MinWordSizefor1Typo = function (a) {
 	return {ctor: 'MinWordSizefor1Typo', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$Length = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$Length = function (a) {
 	return {ctor: 'Length', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$Offset = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$Offset = function (a) {
 	return {ctor: 'Offset', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$HitsPerPage = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$HitsPerPage = function (a) {
 	return {ctor: 'HitsPerPage', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$Page = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$Page = function (a) {
 	return {ctor: 'Page', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$RestrictHighlightAndSnippetArrays = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$RestrictHighlightAndSnippetArrays = function (a) {
 	return {ctor: 'RestrictHighlightAndSnippetArrays', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$SnippetEllipsisText = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$SnippetEllipsisText = function (a) {
 	return {ctor: 'SnippetEllipsisText', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$HighlightPostTag = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$HighlightPostTag = function (a) {
 	return {ctor: 'HighlightPostTag', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$HighlightPreTag = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$HighlightPreTag = function (a) {
 	return {ctor: 'HighlightPreTag', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AttributesToSnippet = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AttributesToSnippet = function (a) {
 	return {ctor: 'AttributesToSnippet', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AttributesToHighlight = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AttributesToHighlight = function (a) {
 	return {ctor: 'AttributesToHighlight', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$SumOrFiltersScores = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$SumOrFiltersScores = function (a) {
 	return {ctor: 'SumOrFiltersScores', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$SortFacetValuesBy = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$SortFacetValuesBy = function (a) {
 	return {ctor: 'SortFacetValuesBy', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$OptionalFilters = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$OptionalFilters = function (a) {
 	return {ctor: 'OptionalFilters', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$FacetingAfterDistinct = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$FacetingAfterDistinct = function (a) {
 	return {ctor: 'FacetingAfterDistinct', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$FacetFilters = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$FacetFilters = function (a) {
 	return {ctor: 'FacetFilters', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$MaxValuesPerFacet = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$MaxValuesPerFacet = function (a) {
 	return {ctor: 'MaxValuesPerFacet', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$Facets = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$Facets = function (a) {
 	return {ctor: 'Facets', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$Filters = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$Filters = function (a) {
 	return {ctor: 'Filters', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$RestrictSearchableAttributes = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$RestrictSearchableAttributes = function (a) {
 	return {ctor: 'RestrictSearchableAttributes', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AttributesToRetrieve = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AttributesToRetrieve = function (a) {
 	return {ctor: 'AttributesToRetrieve', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$Query = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$Query = function (a) {
 	return {ctor: 'Query', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$FacetsAll = {ctor: 'FacetsAll'};
-var _evancz$elm_html$Algolia_Api$FacetsStrings = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$FacetsAll = {ctor: 'FacetsAll'};
+var _kaashyapan$algolia_client$Algolia_Api$FacetsStrings = function (a) {
 	return {ctor: 'FacetsStrings', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$ExactOnSingleWordQuertWord = {ctor: 'ExactOnSingleWordQuertWord'};
-var _evancz$elm_html$Algolia_Api$ExactOnSingleWordQueryNone = {ctor: 'ExactOnSingleWordQueryNone'};
-var _evancz$elm_html$Algolia_Api$ExactOnSingleWordQueryAttribute = {ctor: 'ExactOnSingleWordQueryAttribute'};
-var _evancz$elm_html$Algolia_Api$TypoToleranceStrict = {ctor: 'TypoToleranceStrict'};
-var _evancz$elm_html$Algolia_Api$TypoToleranceMin = {ctor: 'TypoToleranceMin'};
-var _evancz$elm_html$Algolia_Api$TypoToleranceFalse = {ctor: 'TypoToleranceFalse'};
-var _evancz$elm_html$Algolia_Api$TypoToleranceTrue = {ctor: 'TypoToleranceTrue'};
-var _evancz$elm_html$Algolia_Api$IgnorePluralsList = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$ExactOnSingleWordQuertWord = {ctor: 'ExactOnSingleWordQuertWord'};
+var _kaashyapan$algolia_client$Algolia_Api$ExactOnSingleWordQueryNone = {ctor: 'ExactOnSingleWordQueryNone'};
+var _kaashyapan$algolia_client$Algolia_Api$ExactOnSingleWordQueryAttribute = {ctor: 'ExactOnSingleWordQueryAttribute'};
+var _kaashyapan$algolia_client$Algolia_Api$TypoToleranceStrict = {ctor: 'TypoToleranceStrict'};
+var _kaashyapan$algolia_client$Algolia_Api$TypoToleranceMin = {ctor: 'TypoToleranceMin'};
+var _kaashyapan$algolia_client$Algolia_Api$TypoToleranceFalse = {ctor: 'TypoToleranceFalse'};
+var _kaashyapan$algolia_client$Algolia_Api$TypoToleranceTrue = {ctor: 'TypoToleranceTrue'};
+var _kaashyapan$algolia_client$Algolia_Api$IgnorePluralsList = function (a) {
 	return {ctor: 'IgnorePluralsList', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$IgnorePluralsFalse = {ctor: 'IgnorePluralsFalse'};
-var _evancz$elm_html$Algolia_Api$IgnorePluralsTrue = {ctor: 'IgnorePluralsTrue'};
-var _evancz$elm_html$Algolia_Api$AroundRadiusInt = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$IgnorePluralsFalse = {ctor: 'IgnorePluralsFalse'};
+var _kaashyapan$algolia_client$Algolia_Api$IgnorePluralsTrue = {ctor: 'IgnorePluralsTrue'};
+var _kaashyapan$algolia_client$Algolia_Api$AroundRadiusInt = function (a) {
 	return {ctor: 'AroundRadiusInt', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AroundRadiusAll = {ctor: 'AroundRadiusAll'};
-var _evancz$elm_html$Algolia_Api$PrefixNone = {ctor: 'PrefixNone'};
-var _evancz$elm_html$Algolia_Api$PrefixAll = {ctor: 'PrefixAll'};
-var _evancz$elm_html$Algolia_Api$PrefixLast = {ctor: 'PrefixLast'};
-var _evancz$elm_html$Algolia_Api$AllOptional = {ctor: 'AllOptional'};
-var _evancz$elm_html$Algolia_Api$FirstWords = {ctor: 'FirstWords'};
-var _evancz$elm_html$Algolia_Api$LastWords = {ctor: 'LastWords'};
-var _evancz$elm_html$Algolia_Api$RemoveNoneIfNoResults = {ctor: 'RemoveNoneIfNoResults'};
-var _evancz$elm_html$Algolia_Api$RemoveStopWordsList = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AroundRadiusAll = {ctor: 'AroundRadiusAll'};
+var _kaashyapan$algolia_client$Algolia_Api$PrefixNone = {ctor: 'PrefixNone'};
+var _kaashyapan$algolia_client$Algolia_Api$PrefixAll = {ctor: 'PrefixAll'};
+var _kaashyapan$algolia_client$Algolia_Api$PrefixLast = {ctor: 'PrefixLast'};
+var _kaashyapan$algolia_client$Algolia_Api$AllOptional = {ctor: 'AllOptional'};
+var _kaashyapan$algolia_client$Algolia_Api$FirstWords = {ctor: 'FirstWords'};
+var _kaashyapan$algolia_client$Algolia_Api$LastWords = {ctor: 'LastWords'};
+var _kaashyapan$algolia_client$Algolia_Api$RemoveNoneIfNoResults = {ctor: 'RemoveNoneIfNoResults'};
+var _kaashyapan$algolia_client$Algolia_Api$RemoveStopWordsList = function (a) {
 	return {ctor: 'RemoveStopWordsList', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$RemoveStopWordsFalse = {ctor: 'RemoveStopWordsFalse'};
-var _evancz$elm_html$Algolia_Api$RemoveStopWordsTrue = {ctor: 'RemoveStopWordsTrue'};
-var _evancz$elm_html$Algolia_Api$StopIfEnoughMatches = {ctor: 'StopIfEnoughMatches'};
-var _evancz$elm_html$Algolia_Api$NoStrategy = {ctor: 'NoStrategy'};
-var _evancz$elm_html$Algolia_Api$ListIndexes = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$RemoveStopWordsFalse = {ctor: 'RemoveStopWordsFalse'};
+var _kaashyapan$algolia_client$Algolia_Api$RemoveStopWordsTrue = {ctor: 'RemoveStopWordsTrue'};
+var _kaashyapan$algolia_client$Algolia_Api$StopIfEnoughMatches = {ctor: 'StopIfEnoughMatches'};
+var _kaashyapan$algolia_client$Algolia_Api$NoStrategy = {ctor: 'NoStrategy'};
+var _kaashyapan$algolia_client$Algolia_Api$ListIndexes = function (a) {
 	return {ctor: 'ListIndexes', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$CopyIndex = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$CopyIndex = function (a) {
 	return {ctor: 'CopyIndex', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$DeleteIndex = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$DeleteIndex = function (a) {
 	return {ctor: 'DeleteIndex', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$ClearIndex = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$ClearIndex = function (a) {
 	return {ctor: 'ClearIndex', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$ChangeIndexSettings = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$ChangeIndexSettings = function (a) {
 	return {ctor: 'ChangeIndexSettings', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$GetIndexSettings = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$GetIndexSettings = function (a) {
 	return {ctor: 'GetIndexSettings', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$RetrieveAnObject = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$RetrieveAnObject = function (a) {
 	return {ctor: 'RetrieveAnObject', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$RetrieveMultipleObjects = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$RetrieveMultipleObjects = function (a) {
 	return {ctor: 'RetrieveMultipleObjects', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$PartiallyUpdateAnObject = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$PartiallyUpdateAnObject = function (a) {
 	return {ctor: 'PartiallyUpdateAnObject', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$DeleteByQuery = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$DeleteByQuery = function (a) {
 	return {ctor: 'DeleteByQuery', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$DeleteAnObject = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$DeleteAnObject = function (a) {
 	return {ctor: 'DeleteAnObject', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AddUpdateAnObjectByID = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AddUpdateAnObjectByID = function (a) {
 	return {ctor: 'AddUpdateAnObjectByID', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$AddAnObjectWithoutID = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$AddAnObjectWithoutID = function (a) {
 	return {ctor: 'AddAnObjectWithoutID', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$SearchForFacetvalues = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$SearchForFacetvalues = function (a) {
 	return {ctor: 'SearchForFacetvalues', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$SearchMultipleIndexes = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$SearchMultipleIndexes = function (a) {
 	return {ctor: 'SearchMultipleIndexes', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$SearchAnIndexAlternative = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$SearchAnIndexAlternative = function (a) {
 	return {ctor: 'SearchAnIndexAlternative', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$SearchAnIndex = function (a) {
+var _kaashyapan$algolia_client$Algolia_Api$SearchAnIndex = function (a) {
 	return {ctor: 'SearchAnIndex', _0: a};
 };
-var _evancz$elm_html$Algolia_Api$Copy = {ctor: 'Copy'};
-var _evancz$elm_html$Algolia_Api$Move = {ctor: 'Move'};
+var _kaashyapan$algolia_client$Algolia_Api$Copy = {ctor: 'Copy'};
+var _kaashyapan$algolia_client$Algolia_Api$Move = {ctor: 'Move'};
 
-var _evancz$elm_html$Algolia$formatHeaders = function (config) {
+var _kaashyapan$algolia_client$Algolia$formatHeaders = function (config) {
 	var headers = {
 		ctor: '::',
 		_0: A2(_elm_lang$http$Http$header, 'X-Algolia-Application-Id', config.appId),
@@ -10269,37 +10269,37 @@ var _evancz$elm_html$Algolia$formatHeaders = function (config) {
 		config.extraHeaders);
 	return A2(_elm_lang$core$Basics_ops['++'], headers, extraHeaders);
 };
-var _evancz$elm_html$Algolia$Config = F4(
+var _kaashyapan$algolia_client$Algolia$Config = F4(
 	function (a, b, c, d) {
 		return {apiKey: a, appId: b, api: c, extraHeaders: d};
 	});
-var _evancz$elm_html$Algolia$Resp = function (a) {
+var _kaashyapan$algolia_client$Algolia$Resp = function (a) {
 	return {ctor: 'Resp', _0: a};
 };
-var _evancz$elm_html$Algolia$fetch = function (config) {
-	var rqstRec = _evancz$elm_html$Algolia_Api$formRqst(config);
+var _kaashyapan$algolia_client$Algolia$fetch = function (config) {
+	var rqstRec = _kaashyapan$algolia_client$Algolia_Api$formRqst(config);
 	var rqst = _elm_lang$http$Http$request(
 		{
 			method: rqstRec.httpMethod,
-			headers: _evancz$elm_html$Algolia$formatHeaders(config),
+			headers: _kaashyapan$algolia_client$Algolia$formatHeaders(config),
 			url: rqstRec.url,
 			body: rqstRec.body,
 			expect: _elm_lang$http$Http$expectString,
 			timeout: _elm_lang$core$Maybe$Nothing,
 			withCredentials: false
 		});
-	return A2(_elm_lang$http$Http$send, _evancz$elm_html$Algolia$Resp, rqst);
+	return A2(_elm_lang$http$Http$send, _kaashyapan$algolia_client$Algolia$Resp, rqst);
 };
-var _evancz$elm_html$Algolia$AllGood = function (a) {
+var _kaashyapan$algolia_client$Algolia$AllGood = function (a) {
 	return {ctor: 'AllGood', _0: a};
 };
-var _evancz$elm_html$Algolia$FatalError = function (a) {
+var _kaashyapan$algolia_client$Algolia$FatalError = function (a) {
 	return {ctor: 'FatalError', _0: a};
 };
-var _evancz$elm_html$Algolia$getSearchResults = function (msg) {
+var _kaashyapan$algolia_client$Algolia$getSearchResults = function (msg) {
 	var _p2 = msg;
 	if (_p2._0.ctor === 'Ok') {
-		return _evancz$elm_html$Algolia$AllGood(_p2._0._0);
+		return _kaashyapan$algolia_client$Algolia$AllGood(_p2._0._0);
 	} else {
 		var status = function () {
 			var _p3 = _p2._0._0;
@@ -10320,12 +10320,12 @@ var _evancz$elm_html$Algolia$getSearchResults = function (msg) {
 					return A2(_elm_lang$core$Basics_ops['++'], 'Bad payload - ', _p3._0);
 			}
 		}();
-		return _evancz$elm_html$Algolia$FatalError(status);
+		return _kaashyapan$algolia_client$Algolia$FatalError(status);
 	}
 };
 
-var _evancz$elm_html$SimpleExample$defaultHighlightResult = {value: '', matchLevel: 'none', fullyHighlighted: _elm_lang$core$Maybe$Nothing, matchedWords: _elm_lang$core$Maybe$Nothing};
-var _evancz$elm_html$SimpleExample$initAlgoliaResponse = {
+var _kaashyapan$algolia_client$SimpleExample$defaultHighlightResult = {value: '', matchLevel: 'none', fullyHighlighted: _elm_lang$core$Maybe$Nothing, matchedWords: _elm_lang$core$Maybe$Nothing};
+var _kaashyapan$algolia_client$SimpleExample$initAlgoliaResponse = {
 	hits: {ctor: '[]'},
 	nbHits: 0,
 	page: 0,
@@ -10336,7 +10336,7 @@ var _evancz$elm_html$SimpleExample$initAlgoliaResponse = {
 	query: '',
 	params: ''
 };
-var _evancz$elm_html$SimpleExample$formatHighlight = function (str) {
+var _kaashyapan$algolia_client$SimpleExample$formatHighlight = function (str) {
 	var highlight = A2(
 		_elm_lang$core$Maybe$withDefault,
 		'',
@@ -10409,11 +10409,11 @@ var _evancz$elm_html$SimpleExample$formatHighlight = function (str) {
 		}
 	};
 };
-var _evancz$elm_html$SimpleExample$highlightedName = function (result) {
+var _kaashyapan$algolia_client$SimpleExample$highlightedName = function (result) {
 	var altNameHtml = function () {
 		var _p0 = result.alternative_name;
 		if (_p0.ctor === 'Just') {
-			return _evancz$elm_html$SimpleExample$formatHighlight(_p0._0.value);
+			return _kaashyapan$algolia_client$SimpleExample$formatHighlight(_p0._0.value);
 		} else {
 			return {ctor: '[]'};
 		}
@@ -10421,7 +10421,7 @@ var _evancz$elm_html$SimpleExample$highlightedName = function (result) {
 	var nameHtml = function () {
 		var _p1 = result.name;
 		if (_p1.ctor === 'Just') {
-			return _evancz$elm_html$SimpleExample$formatHighlight(_p1._0.value);
+			return _kaashyapan$algolia_client$SimpleExample$formatHighlight(_p1._0.value);
 		} else {
 			return {ctor: '[]'};
 		}
@@ -10446,7 +10446,7 @@ var _evancz$elm_html$SimpleExample$highlightedName = function (result) {
 		}
 	};
 };
-var _evancz$elm_html$SimpleExample$displayActor = F2(
+var _kaashyapan$algolia_client$SimpleExample$displayActor = F2(
 	function (query, actor) {
 		return A2(
 			_elm_lang$html$Html$li,
@@ -10495,7 +10495,7 @@ var _evancz$elm_html$SimpleExample$displayActor = F2(
 									_0: _elm_lang$html$Html_Attributes$class('column'),
 									_1: {ctor: '[]'}
 								},
-								_evancz$elm_html$SimpleExample$highlightedName(actor.highlightResult)),
+								_kaashyapan$algolia_client$SimpleExample$highlightedName(actor.highlightResult)),
 							_1: {ctor: '[]'}
 						}
 					}),
@@ -10509,7 +10509,7 @@ var _evancz$elm_html$SimpleExample$displayActor = F2(
 				}
 			});
 	});
-var _evancz$elm_html$SimpleExample$displayResults = function (a) {
+var _kaashyapan$algolia_client$SimpleExample$displayResults = function (a) {
 	return A2(
 		_elm_lang$html$Html$ul,
 		{
@@ -10519,63 +10519,63 @@ var _evancz$elm_html$SimpleExample$displayResults = function (a) {
 		},
 		A2(
 			_elm_lang$core$List$map,
-			_evancz$elm_html$SimpleExample$displayActor(a.query),
+			_kaashyapan$algolia_client$SimpleExample$displayActor(a.query),
 			a.hits));
 };
-var _evancz$elm_html$SimpleExample$searchOptions = function (str) {
+var _kaashyapan$algolia_client$SimpleExample$searchOptions = function (str) {
 	return {
 		indexName: 'getstarted_actors',
 		params: _elm_lang$core$Maybe$Just(
 			{
 				ctor: '::',
-				_0: _evancz$elm_html$Algolia_Api$TypoTolerance(_evancz$elm_html$Algolia_Api$TypoToleranceFalse),
+				_0: _kaashyapan$algolia_client$Algolia_Api$TypoTolerance(_kaashyapan$algolia_client$Algolia_Api$TypoToleranceFalse),
 				_1: {
 					ctor: '::',
-					_0: _evancz$elm_html$Algolia_Api$HitsPerPage(10),
+					_0: _kaashyapan$algolia_client$Algolia_Api$HitsPerPage(10),
 					_1: {
 						ctor: '::',
-						_0: _evancz$elm_html$Algolia_Api$Query(str),
+						_0: _kaashyapan$algolia_client$Algolia_Api$Query(str),
 						_1: {ctor: '[]'}
 					}
 				}
 			})
 	};
 };
-var _evancz$elm_html$SimpleExample$config = function (str) {
+var _kaashyapan$algolia_client$SimpleExample$config = function (str) {
 	return {
 		apiKey: 'd3cff3e276e384e86347c50d1ff7b8f3',
 		appId: 'VTU1B49X2Y',
-		api: _evancz$elm_html$Algolia_Api$SearchAnIndex(
-			_evancz$elm_html$SimpleExample$searchOptions(str)),
+		api: _kaashyapan$algolia_client$Algolia_Api$SearchAnIndex(
+			_kaashyapan$algolia_client$SimpleExample$searchOptions(str)),
 		extraHeaders: {ctor: '[]'}
 	};
 };
-var _evancz$elm_html$SimpleExample$minCharsToStartSearch = 3;
-var _evancz$elm_html$SimpleExample$init = {
+var _kaashyapan$algolia_client$SimpleExample$minCharsToStartSearch = 3;
+var _kaashyapan$algolia_client$SimpleExample$init = {
 	ctor: '_Tuple2',
-	_0: {searchString: '', algoliaResponseString: '', algoliaResponse: _evancz$elm_html$SimpleExample$initAlgoliaResponse},
+	_0: {searchString: '', algoliaResponseString: '', algoliaResponse: _kaashyapan$algolia_client$SimpleExample$initAlgoliaResponse},
 	_1: _elm_lang$core$Platform_Cmd$none
 };
-var _evancz$elm_html$SimpleExample$subscriptions = function (model) {
+var _kaashyapan$algolia_client$SimpleExample$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _evancz$elm_html$SimpleExample$Model = F3(
+var _kaashyapan$algolia_client$SimpleExample$Model = F3(
 	function (a, b, c) {
 		return {searchString: a, algoliaResponseString: b, algoliaResponse: c};
 	});
-var _evancz$elm_html$SimpleExample$AlgoliaResponse = F9(
+var _kaashyapan$algolia_client$SimpleExample$AlgoliaResponse = F9(
 	function (a, b, c, d, e, f, g, h, i) {
 		return {hits: a, nbHits: b, page: c, nbPages: d, hitsPerPage: e, processingTimeMS: f, exhaustiveNbHits: g, query: h, params: i};
 	});
-var _evancz$elm_html$SimpleExample$Actor = F6(
+var _kaashyapan$algolia_client$SimpleExample$Actor = F6(
 	function (a, b, c, d, e, f) {
 		return {name: a, rating: b, image_path: c, alternative_name: d, objectID: e, highlightResult: f};
 	});
-var _evancz$elm_html$SimpleExample$HighlightResult = F4(
+var _kaashyapan$algolia_client$SimpleExample$HighlightResult = F4(
 	function (a, b, c, d) {
 		return {value: a, matchLevel: b, fullyHighlighted: c, matchedWords: d};
 	});
-var _evancz$elm_html$SimpleExample$decode_highlightResult = A4(
+var _kaashyapan$algolia_client$SimpleExample$decode_highlightResult = A4(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
 	'matchedWords',
 	_elm_lang$core$Json_Decode$nullable(
@@ -10594,25 +10594,25 @@ var _evancz$elm_html$SimpleExample$decode_highlightResult = A4(
 				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 				'value',
 				_elm_lang$core$Json_Decode$string,
-				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_evancz$elm_html$SimpleExample$HighlightResult)))));
-var _evancz$elm_html$SimpleExample$Actor_highlightResult = F2(
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_kaashyapan$algolia_client$SimpleExample$HighlightResult)))));
+var _kaashyapan$algolia_client$SimpleExample$Actor_highlightResult = F2(
 	function (a, b) {
 		return {name: a, alternative_name: b};
 	});
-var _evancz$elm_html$SimpleExample$decodeActor_highlightResult = A4(
+var _kaashyapan$algolia_client$SimpleExample$decodeActor_highlightResult = A4(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
 	'alternative_name',
-	_elm_lang$core$Json_Decode$nullable(_evancz$elm_html$SimpleExample$decode_highlightResult),
-	_elm_lang$core$Maybe$Just(_evancz$elm_html$SimpleExample$defaultHighlightResult),
+	_elm_lang$core$Json_Decode$nullable(_kaashyapan$algolia_client$SimpleExample$decode_highlightResult),
+	_elm_lang$core$Maybe$Just(_kaashyapan$algolia_client$SimpleExample$defaultHighlightResult),
 	A3(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 		'name',
-		_elm_lang$core$Json_Decode$nullable(_evancz$elm_html$SimpleExample$decode_highlightResult),
-		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_evancz$elm_html$SimpleExample$Actor_highlightResult)));
-var _evancz$elm_html$SimpleExample$decodeActor = A3(
+		_elm_lang$core$Json_Decode$nullable(_kaashyapan$algolia_client$SimpleExample$decode_highlightResult),
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_kaashyapan$algolia_client$SimpleExample$Actor_highlightResult)));
+var _kaashyapan$algolia_client$SimpleExample$decodeActor = A3(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 	'_highlightResult',
-	_evancz$elm_html$SimpleExample$decodeActor_highlightResult,
+	_kaashyapan$algolia_client$SimpleExample$decodeActor_highlightResult,
 	A3(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 		'objectID',
@@ -10633,8 +10633,8 @@ var _evancz$elm_html$SimpleExample$decodeActor = A3(
 						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 						'name',
 						_elm_lang$core$Json_Decode$string,
-						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_evancz$elm_html$SimpleExample$Actor)))))));
-var _evancz$elm_html$SimpleExample$decodeAlgoliaResponse = A3(
+						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_kaashyapan$algolia_client$SimpleExample$Actor)))))));
+var _kaashyapan$algolia_client$SimpleExample$decodeAlgoliaResponse = A3(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 	'params',
 	_elm_lang$core$Json_Decode$string,
@@ -10669,12 +10669,12 @@ var _evancz$elm_html$SimpleExample$decodeAlgoliaResponse = A3(
 								A3(
 									_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 									'hits',
-									_elm_lang$core$Json_Decode$list(_evancz$elm_html$SimpleExample$decodeActor),
-									_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_evancz$elm_html$SimpleExample$AlgoliaResponse))))))))));
-var _evancz$elm_html$SimpleExample$AlgoliaMsg = function (a) {
+									_elm_lang$core$Json_Decode$list(_kaashyapan$algolia_client$SimpleExample$decodeActor),
+									_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_kaashyapan$algolia_client$SimpleExample$AlgoliaResponse))))))))));
+var _kaashyapan$algolia_client$SimpleExample$AlgoliaMsg = function (a) {
 	return {ctor: 'AlgoliaMsg', _0: a};
 };
-var _evancz$elm_html$SimpleExample$update = F2(
+var _kaashyapan$algolia_client$SimpleExample$update = F2(
 	function (msg, model) {
 		var _p2 = msg;
 		switch (_p2.ctor) {
@@ -10684,36 +10684,36 @@ var _evancz$elm_html$SimpleExample$update = F2(
 				var _p3 = _p2._0;
 				if (_elm_lang$core$Native_Utils.cmp(
 					_elm_lang$core$String$length(_p3),
-					_evancz$elm_html$SimpleExample$minCharsToStartSearch) > -1) {
-					var subCmd = _evancz$elm_html$Algolia$fetch(
-						_evancz$elm_html$SimpleExample$config(_p3));
+					_kaashyapan$algolia_client$SimpleExample$minCharsToStartSearch) > -1) {
+					var subCmd = _kaashyapan$algolia_client$Algolia$fetch(
+						_kaashyapan$algolia_client$SimpleExample$config(_p3));
 					return {
 						ctor: '_Tuple2',
 						_0: model,
-						_1: A2(_elm_lang$core$Platform_Cmd$map, _evancz$elm_html$SimpleExample$AlgoliaMsg, subCmd)
+						_1: A2(_elm_lang$core$Platform_Cmd$map, _kaashyapan$algolia_client$SimpleExample$AlgoliaMsg, subCmd)
 					};
 				} else {
 					return {
 						ctor: '_Tuple2',
 						_0: _elm_lang$core$Native_Utils.update(
 							model,
-							{algoliaResponse: _evancz$elm_html$SimpleExample$initAlgoliaResponse}),
+							{algoliaResponse: _kaashyapan$algolia_client$SimpleExample$initAlgoliaResponse}),
 						_1: _elm_lang$core$Platform_Cmd$none
 					};
 				}
 			default:
 				var _p4 = function () {
-					var _p5 = _evancz$elm_html$Algolia$getSearchResults(_p2._0);
+					var _p5 = _kaashyapan$algolia_client$Algolia$getSearchResults(_p2._0);
 					if (_p5.ctor === 'AllGood') {
 						var _p7 = _p5._0;
-						var _p6 = A2(_elm_lang$core$Json_Decode$decodeString, _evancz$elm_html$SimpleExample$decodeAlgoliaResponse, _p7);
+						var _p6 = A2(_elm_lang$core$Json_Decode$decodeString, _kaashyapan$algolia_client$SimpleExample$decodeAlgoliaResponse, _p7);
 						if (_p6.ctor === 'Ok') {
 							return {ctor: '_Tuple2', _0: _p6._0, _1: _p7};
 						} else {
-							return {ctor: '_Tuple2', _0: _evancz$elm_html$SimpleExample$initAlgoliaResponse, _1: _p6._0};
+							return {ctor: '_Tuple2', _0: _kaashyapan$algolia_client$SimpleExample$initAlgoliaResponse, _1: _p6._0};
 						}
 					} else {
-						return {ctor: '_Tuple2', _0: _evancz$elm_html$SimpleExample$initAlgoliaResponse, _1: _p5._0};
+						return {ctor: '_Tuple2', _0: _kaashyapan$algolia_client$SimpleExample$initAlgoliaResponse, _1: _p5._0};
 					}
 				}();
 				var algoliaResponse = _p4._0;
@@ -10727,10 +10727,10 @@ var _evancz$elm_html$SimpleExample$update = F2(
 				};
 		}
 	});
-var _evancz$elm_html$SimpleExample$InputString = function (a) {
+var _kaashyapan$algolia_client$SimpleExample$InputString = function (a) {
 	return {ctor: 'InputString', _0: a};
 };
-var _evancz$elm_html$SimpleExample$view = function (model) {
+var _kaashyapan$algolia_client$SimpleExample$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
@@ -10820,14 +10820,14 @@ var _evancz$elm_html$SimpleExample$view = function (model) {
 													_0: _elm_lang$html$Html_Attributes$class('input'),
 													_1: {
 														ctor: '::',
-														_0: _elm_lang$html$Html_Events$onInput(_evancz$elm_html$SimpleExample$InputString),
+														_0: _elm_lang$html$Html_Events$onInput(_kaashyapan$algolia_client$SimpleExample$InputString),
 														_1: {ctor: '[]'}
 													}
 												},
 												{ctor: '[]'}),
 											_1: {
 												ctor: '::',
-												_0: _evancz$elm_html$SimpleExample$displayResults(model.algoliaResponse),
+												_0: _kaashyapan$algolia_client$SimpleExample$displayResults(model.algoliaResponse),
 												_1: {ctor: '[]'}
 											}
 										}
@@ -10893,14 +10893,14 @@ var _evancz$elm_html$SimpleExample$view = function (model) {
 			}
 		});
 };
-var _evancz$elm_html$SimpleExample$main = _elm_lang$html$Html$program(
-	{init: _evancz$elm_html$SimpleExample$init, update: _evancz$elm_html$SimpleExample$update, view: _evancz$elm_html$SimpleExample$view, subscriptions: _evancz$elm_html$SimpleExample$subscriptions})();
-var _evancz$elm_html$SimpleExample$NoOp = {ctor: 'NoOp'};
+var _kaashyapan$algolia_client$SimpleExample$main = _elm_lang$html$Html$program(
+	{init: _kaashyapan$algolia_client$SimpleExample$init, update: _kaashyapan$algolia_client$SimpleExample$update, view: _kaashyapan$algolia_client$SimpleExample$view, subscriptions: _kaashyapan$algolia_client$SimpleExample$subscriptions})();
+var _kaashyapan$algolia_client$SimpleExample$NoOp = {ctor: 'NoOp'};
 
 var Elm = {};
 Elm['SimpleExample'] = Elm['SimpleExample'] || {};
-if (typeof _evancz$elm_html$SimpleExample$main !== 'undefined') {
-    _evancz$elm_html$SimpleExample$main(Elm['SimpleExample'], 'SimpleExample', undefined);
+if (typeof _kaashyapan$algolia_client$SimpleExample$main !== 'undefined') {
+    _kaashyapan$algolia_client$SimpleExample$main(Elm['SimpleExample'], 'SimpleExample', undefined);
 }
 
 if (typeof define === "function" && define['amd'])

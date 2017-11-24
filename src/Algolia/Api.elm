@@ -17,25 +17,20 @@ module Algolia.Api
         , formRqst
         )
 
-{-| Helper functions for Algolia clients.
+{-|
 
+Helper functions for Algolia clients.
 
-# Helpers
+# Search parameters
 
-@docs   AroundRadiusValue
-        , ExactOnSingleWordQueryValue
-        , FacetsValue
-        , IgnorePluralsValue
-        , IndexOperation
-        , Method(..)
-        , QueryTypeValue
-        , RemoveStopWordsValue
-        , RemoveWordsIfNoResultsValue
-        , SearchParam(..)
-        , SearchRecord
-        , Strategy
-        , TypoToleranceValue
-        , formRqst
+@docs   AroundRadiusValue, ExactOnSingleWordQueryValue, FacetsValue , IgnorePluralsValue
+        , IndexOperation, QueryTypeValue, RemoveStopWordsValue , RemoveWordsIfNoResultsValue
+        , Strategy , TypoToleranceValue
+
+# Api methods and configuration helpers
+
+@docs  Method, SearchParam, SearchRecord, formRqst
+
 -}
 
 import Http exposing (Header, emptyBody, header, jsonBody)
@@ -425,6 +420,7 @@ type Strategy
 
 
 {-| Method
+
 -}
 type Method
     = -- Version1
@@ -496,9 +492,7 @@ type IndexOperation
 
 
 
---formatUrl: a -> String
-
-
+formatUrl: {a | appId : String} -> String
 formatUrl config =
     "https://"
         ++ config.appId
@@ -515,6 +509,7 @@ formatParams params =
 
 
 {-| -}
+formRqst : { a | api : Method, appId : String } -> {url : String, body : Http.Body, httpMethod : String} 
 formRqst config =
     let
         urlDsn =
