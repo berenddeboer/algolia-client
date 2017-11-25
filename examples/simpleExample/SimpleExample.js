@@ -10535,7 +10535,7 @@ var _kaashyapan$algolia_client$SimpleExample$searchOptions = function (str) {
 		params: _elm_lang$core$Maybe$Just(
 			{
 				ctor: '::',
-				_0: _kaashyapan$algolia_client$Algolia_Api$TypoTolerance(_kaashyapan$algolia_client$Algolia_Api$TypoToleranceFalse),
+				_0: _kaashyapan$algolia_client$Algolia_Api$TypoTolerance(_kaashyapan$algolia_client$Algolia_Api$TypoToleranceMin),
 				_1: {
 					ctor: '::',
 					_0: _kaashyapan$algolia_client$Algolia_Api$HitsPerPage(10),

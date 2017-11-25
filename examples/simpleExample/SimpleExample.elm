@@ -66,7 +66,7 @@ view model =
             [ div [ class "columns" ]
                 [ div [ class "container column is-half" ]
                     [ label [ class "label" ]
-                        [ text "Search for actors e.g 'port', 'ben', 'robert', 'julia' " ]
+                        [ text "Search for actors e.g 'robert', 'robn' (intentional typo), 'julia', 'ben'"]
                     , input [ class "input", onInput InputString ] []
                     , displayResults model.algoliaResponse
                     ]
@@ -136,7 +136,7 @@ searchOptions str =
     { indexName = "getstarted_actors"
     , params =
         Just
-            [ TypoTolerance TypoToleranceFalse
+            [ TypoTolerance TypoToleranceMin
             , HitsPerPage 10
             , Query str
             ]
