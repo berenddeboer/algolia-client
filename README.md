@@ -4,7 +4,7 @@
 
 This package provides helper functions that make it easier to use Algolia search on client side with Elm.
 
-[Link to the demo](https://kaashyapan.github.io/algolia-client/examples/simpleExample/SimpleExample.html)
+[Link to the demo - Actor search](https://kaashyapan.github.io/algolia-client/examples/simpleExample/SimpleExample.html)
 
 *This repo still has a few rough edges and is yet to be complete.*
 
