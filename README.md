@@ -66,5 +66,5 @@ Can add them if someone requests
      
      -- Logs api
      GetLogs
-``````
+```
      

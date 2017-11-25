@@ -10336,6 +10336,13 @@ var _kaashyapan$algolia_client$SimpleExample$initAlgoliaResponse = {
 	query: '',
 	params: ''
 };
+var _kaashyapan$algolia_client$SimpleExample$prettifyJsonResponse = function (str) {
+	return _elm_lang$html$Html$text(
+		A2(
+			_elm_lang$core$Json_Encode$encode,
+			4,
+			_elm_lang$core$Json_Encode$string(str)));
+};
 var _kaashyapan$algolia_client$SimpleExample$formatHighlight = function (str) {
 	var highlight = A2(
 		_elm_lang$core$Maybe$withDefault,
@@ -10878,7 +10885,7 @@ var _kaashyapan$algolia_client$SimpleExample$view = function (model) {
 													},
 													{
 														ctor: '::',
-														_0: _elm_lang$html$Html$text(model.algoliaResponseString),
+														_0: _kaashyapan$algolia_client$SimpleExample$prettifyJsonResponse(model.algoliaResponseString),
 														_1: {ctor: '[]'}
 													}),
 												_1: {ctor: '[]'}

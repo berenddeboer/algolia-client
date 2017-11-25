@@ -7,6 +7,7 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 import Json.Decode exposing (field)
 import Json.Decode.Pipeline exposing (..)
+import Json.Encode as Encode exposing (encode, string)
 
 main : Program Never Model Msg
 main =
@@ -72,7 +73,7 @@ view model =
                 , div [ class "container column is-half" ]
                     [ label [ class "label" ] [ text "Raw Json response" ]
                     , textarea [ class "textarea", disabled True, readonly True, rows 30 ]
-                        [ text model.algoliaResponseString ]
+                        [ prettifyJsonResponse model.algoliaResponseString ]
                     ]
                 ]
             ]
@@ -212,6 +213,13 @@ formatHighlight str =
     , span [ style [("background-color", "#3273DC"), ("color", "white")] ] [ Html.text highlight ]
     , span [] [ Html.text post ]
     ]
+
+prettifyJsonResponse : String -> Html Msg
+prettifyJsonResponse str =
+    str
+        |> Encode.string
+        |> Encode.encode 4
+        |> Html.text
 
 {-- Now start the chunk of decoder code.
 --}
