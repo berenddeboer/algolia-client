@@ -1,4 +1,4 @@
-## Instasearch for ELM powered by Algolia
+## Instasearch for Elm powered by Algolia
 
 [Algolia](https://www.algolia.com/) is a Saas that provides a powerful hosted search engine Api.
 
