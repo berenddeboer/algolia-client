@@ -1,14 +1,16 @@
 module SimpleExample exposing (..)
 
-import Algolia exposing (..)
+import Algolia
 import Algolia.Api as Api exposing (..)
 import Browser
 import Html as Html exposing (..)
-import Html.Attributes exposing (..)
+import Html.Attributes exposing (class, rows, disabled, readonly, src, style)
 import Html.Events exposing (onInput)
-import Json.Decode exposing (field)
-import Json.Decode.Pipeline exposing (..)
-import Json.Encode as Encode exposing (encode, string)
+import Json.Decode exposing (succeed, list, bool, int, string)
+import Json.Decode.Pipeline exposing (required)
+import Json.Encode as Encode
+import RemoteData exposing (RemoteData(..), WebData)
+
 
 main : Program Json.Decode.Value Model Msg
 main =
@@ -20,17 +22,18 @@ main =
         }
 
 
+type alias AlgoliaResponse = Algolia.Response Actor
+
 type alias Model =
     { searchString : String
-    , algoliaResponseString : String
-    , algoliaResponse : AlgoliaResponse
+    , algoliaResponse : WebData AlgoliaResponse
     }
 
 
 type Msg
     = NoOp
     | InputString String
-    | AlgoliaMsg Algolia.Msg
+    | AlgoliaResults (WebData AlgoliaResponse)
 
 
 subscriptions : Model -> Sub msg
@@ -41,8 +44,7 @@ subscriptions model =
 init : Json.Decode.Value -> ( Model, Cmd msg )
 init flags =
     ( { searchString = ""
-      , algoliaResponseString = ""
-      , algoliaResponse = initAlgoliaResponse
+      , algoliaResponse = NotAsked
       }
     , Cmd.none
     )
@@ -71,11 +73,6 @@ view model =
                     , input [ class "input", onInput InputString ] []
                     , displayResults model.algoliaResponse
                     ]
-                , div [ class "container column is-half" ]
-                    [ label [ class "label" ] [ text "Raw Json response" ]
-                    , textarea [ class "textarea", disabled True, readonly True, rows 30 ]
-                        [ prettifyJsonResponse model.algoliaResponseString ]
-                    ]
                 ]
             ]
         ]
@@ -90,38 +87,15 @@ update msg model =
 
         InputString str ->
             if String.length str >= minCharsToStartSearch then
-                let
-                    subCmd =
-                        Algolia.fetch (config str)
-                in
-                ( model, Cmd.map AlgoliaMsg subCmd )
+                ( model, Algolia.fetch (config str) AlgoliaResults decodeActor )
             else
-                ( { model | algoliaResponse = initAlgoliaResponse }, Cmd.none )
+                ( { model | algoliaResponse = NotAsked }, Cmd.none )
 
-        AlgoliaMsg subMsg ->
-            let
-                ( algoliaResponse, algoliaResponseString ) =
-                    case Algolia.getSearchResults subMsg of
-                        AllGood str ->
-                            case Json.Decode.decodeString decodeAlgoliaResponse str of
-                                Ok a ->
-                                    ( a, str )
-
-                                Err err ->
-                                    ( initAlgoliaResponse, Json.Decode.errorToString err )
-
-                        FatalError str ->
-                            ( initAlgoliaResponse, str )
-            in
-            ( { model
-                | algoliaResponse = algoliaResponse
-                , algoliaResponseString = algoliaResponseString
-              }
-            , Cmd.none
-            )
+        AlgoliaResults response ->
+            ( { model | algoliaResponse = response }, Cmd.none )
 
 
-{-- Config and query options for Algolia
+{-- Config and query options for Algolia.
 --}
 config : String -> Algolia.Config
 config str =
@@ -147,8 +121,20 @@ searchOptions str =
 {-- View helpers for the search results
 --}
 
-displayResults : AlgoliaResponse -> Html Msg
-displayResults a =
+displayResults : WebData AlgoliaResponse -> Html Msg
+displayResults response =
+    case response of
+        NotAsked -> text "Initialising."
+
+        Loading -> text "Loading."
+
+        Failure err -> text "Error talking to Algolia."
+
+        Success results -> doDisplayResults results
+
+
+doDisplayResults : AlgoliaResponse -> Html Msg
+doDisplayResults a =
     ul [ class "section" ]
         (List.map (displayActor a.query) a.hits)
 
@@ -215,42 +201,9 @@ formatHighlight str =
     , span [] [ Html.text post ]
     ]
 
-prettifyJsonResponse : String -> Html Msg
-prettifyJsonResponse str =
-    str
-        |> Encode.string
-        |> Encode.encode 4
-        |> Html.text
 
 {-- Now start the chunk of decoder code.
 --}
-
-type alias AlgoliaResponse =
-    { hits : List Actor
-    , nbHits : Int
-    , page : Int
-    , nbPages : Int
-    , hitsPerPage : Int
-    , processingTimeMS : Int
-    , exhaustiveNbHits : Bool
-    , query : String
-    , params : String
-    }
-
-initAlgoliaResponse : AlgoliaResponse
-initAlgoliaResponse =
-    { hits = []
-    , nbHits = 0
-    , page = 0
-    , nbPages = 0
-    , hitsPerPage = 0
-    , processingTimeMS = 0
-    , exhaustiveNbHits = False
-    , query = ""
-    , params = ""
-    }
-
-
 
 type alias Actor =
     { name : String
@@ -277,44 +230,30 @@ type alias Actor_highlightResult =
 
 
 
-decodeAlgoliaResponse : Json.Decode.Decoder AlgoliaResponse
-decodeAlgoliaResponse =
-    Json.Decode.succeed AlgoliaResponse
-        |> Json.Decode.Pipeline.required "hits" (Json.Decode.list decodeActor)
-        |> Json.Decode.Pipeline.required "nbHits" Json.Decode.int
-        |> Json.Decode.Pipeline.required "page" Json.Decode.int
-        |> Json.Decode.Pipeline.required "nbPages" Json.Decode.int
-        |> Json.Decode.Pipeline.required "hitsPerPage" Json.Decode.int
-        |> Json.Decode.Pipeline.required "processingTimeMS" Json.Decode.int
-        |> Json.Decode.Pipeline.required "exhaustiveNbHits" Json.Decode.bool
-        |> Json.Decode.Pipeline.required "query" Json.Decode.string
-        |> Json.Decode.Pipeline.required "params" Json.Decode.string
-
-
 decodeActor : Json.Decode.Decoder Actor
 decodeActor =
     Json.Decode.succeed Actor
-        |> Json.Decode.Pipeline.required "name" Json.Decode.string
-        |> Json.Decode.Pipeline.required "rating" Json.Decode.int
-        |> Json.Decode.Pipeline.required "image_path" Json.Decode.string
-        |> Json.Decode.Pipeline.required "alternative_name" (Json.Decode.nullable Json.Decode.string)
-        |> Json.Decode.Pipeline.required "objectID" Json.Decode.string
-        |> Json.Decode.Pipeline.required "_highlightResult" decodeActor_highlightResult
+        |> required "name" string
+        |> required "rating" int
+        |> required "image_path" string
+        |> required "alternative_name" (Json.Decode.nullable string)
+        |> required "objectID" string
+        |> required "_highlightResult" decodeActor_highlightResult
 
 
 decode_highlightResult : Json.Decode.Decoder HighlightResult
 decode_highlightResult =
     Json.Decode.succeed HighlightResult
-        |> Json.Decode.Pipeline.required "value" Json.Decode.string
-        |> Json.Decode.Pipeline.required "matchLevel" Json.Decode.string
-        |> Json.Decode.Pipeline.optional "fullyHighlighted" (Json.Decode.nullable Json.Decode.bool) Nothing
-        |> Json.Decode.Pipeline.optional "matchedWords" (Json.Decode.nullable (Json.Decode.list Json.Decode.string)) Nothing
+        |> required "value" string
+        |> required "matchLevel" string
+        |> Json.Decode.Pipeline.optional "fullyHighlighted" (Json.Decode.nullable bool) Nothing
+        |> Json.Decode.Pipeline.optional "matchedWords" (Json.Decode.nullable (Json.Decode.list string)) Nothing
 
 
 decodeActor_highlightResult : Json.Decode.Decoder Actor_highlightResult
 decodeActor_highlightResult =
     Json.Decode.succeed Actor_highlightResult
-        |> Json.Decode.Pipeline.required "name" (Json.Decode.nullable decode_highlightResult)
+        |> required "name" (Json.Decode.nullable decode_highlightResult)
         |> Json.Decode.Pipeline.optional "alternative_name" (Json.Decode.nullable decode_highlightResult) (Just defaultHighlightResult)
 
 
