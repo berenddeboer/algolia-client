@@ -2,6 +2,7 @@ module SimpleExample exposing (..)
 
 import Algolia exposing (..)
 import Algolia.Api as Api exposing (..)
+import Browser
 import Html as Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
@@ -9,9 +10,9 @@ import Json.Decode exposing (field)
 import Json.Decode.Pipeline exposing (..)
 import Json.Encode as Encode exposing (encode, string)
 
-main : Program Never Model Msg
+main : Program Json.Decode.Value Model Msg
 main =
-    program
+    Browser.element
         { init = init
         , update = update
         , view = view
@@ -37,8 +38,8 @@ subscriptions model =
     Sub.none
 
 
-init : ( Model, Cmd msg )
-init =
+init : Json.Decode.Value -> ( Model, Cmd msg )
+init flags =
     ( { searchString = ""
       , algoliaResponseString = ""
       , algoliaResponse = initAlgoliaResponse
@@ -107,7 +108,7 @@ update msg model =
                                     ( a, str )
 
                                 Err err ->
-                                    ( initAlgoliaResponse, err )
+                                    ( initAlgoliaResponse, Json.Decode.errorToString err )
 
                         FatalError str ->
                             ( initAlgoliaResponse, str )
@@ -124,8 +125,8 @@ update msg model =
 --}
 config : String -> Algolia.Config
 config str =
-    { apiKey = "d3cff3e276e384e86347c50d1ff7b8f3"
-    , appId = "VTU1B49X2Y"
+    { apiKey = "6be0576ff61c053d5f9a3225e2a90f76"
+    , appId = "latency"
     , api = SearchAnIndex (searchOptions str)
     , extraHeaders = []
     }
@@ -133,7 +134,7 @@ config str =
 
 searchOptions : String -> Api.SearchRecord
 searchOptions str =
-    { indexName = "getstarted_actors"
+    { indexName = "actors"
     , params =
         Just
             [ TypoTolerance TypoToleranceMin
@@ -210,7 +211,7 @@ formatHighlight str =
                 |> Maybe.withDefault ""
     in
     [ span [] [ Html.text pre ]
-    , span [ style [("background-color", "#3273DC"), ("color", "white")] ] [ Html.text highlight ]
+    , span [ style "background-color" "#3273DC", style "color" "white" ] [ Html.text highlight ]
     , span [] [ Html.text post ]
     ]
 
@@ -278,7 +279,7 @@ type alias Actor_highlightResult =
 
 decodeAlgoliaResponse : Json.Decode.Decoder AlgoliaResponse
 decodeAlgoliaResponse =
-    Json.Decode.Pipeline.decode AlgoliaResponse
+    Json.Decode.succeed AlgoliaResponse
         |> Json.Decode.Pipeline.required "hits" (Json.Decode.list decodeActor)
         |> Json.Decode.Pipeline.required "nbHits" Json.Decode.int
         |> Json.Decode.Pipeline.required "page" Json.Decode.int
@@ -292,7 +293,7 @@ decodeAlgoliaResponse =
 
 decodeActor : Json.Decode.Decoder Actor
 decodeActor =
-    Json.Decode.Pipeline.decode Actor
+    Json.Decode.succeed Actor
         |> Json.Decode.Pipeline.required "name" Json.Decode.string
         |> Json.Decode.Pipeline.required "rating" Json.Decode.int
         |> Json.Decode.Pipeline.required "image_path" Json.Decode.string
@@ -303,7 +304,7 @@ decodeActor =
 
 decode_highlightResult : Json.Decode.Decoder HighlightResult
 decode_highlightResult =
-    Json.Decode.Pipeline.decode HighlightResult
+    Json.Decode.succeed HighlightResult
         |> Json.Decode.Pipeline.required "value" Json.Decode.string
         |> Json.Decode.Pipeline.required "matchLevel" Json.Decode.string
         |> Json.Decode.Pipeline.optional "fullyHighlighted" (Json.Decode.nullable Json.Decode.bool) Nothing
@@ -312,7 +313,7 @@ decode_highlightResult =
 
 decodeActor_highlightResult : Json.Decode.Decoder Actor_highlightResult
 decodeActor_highlightResult =
-    Json.Decode.Pipeline.decode Actor_highlightResult
+    Json.Decode.succeed Actor_highlightResult
         |> Json.Decode.Pipeline.required "name" (Json.Decode.nullable decode_highlightResult)
         |> Json.Decode.Pipeline.optional "alternative_name" (Json.Decode.nullable decode_highlightResult) (Just defaultHighlightResult)
 
