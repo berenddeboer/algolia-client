@@ -178,7 +178,7 @@ getSearchString a =
                     "facets=*"
 
         MaxValuesPerFacet n ->
-            "maxValuesPerFacet=" ++ toString n
+            "maxValuesPerFacet=" ++ (String.fromInt n)
 
         FacetFilters ls ->
             "facetFilters=" ++ encodeList ls
@@ -214,37 +214,37 @@ getSearchString a =
             "restrictHighlightAndSnippetArrays=" ++ (Encode.bool bool_ |> Encode.encode 0)
 
         Page n ->
-            "page=" ++ toString n
+            "page=" ++ (String.fromInt n)
 
         HitsPerPage n ->
-            "hitsPerPage=" ++ toString n
+            "hitsPerPage=" ++ (String.fromInt n)
 
         Offset n ->
-            "offset=" ++ toString n
+            "offset=" ++ (String.fromInt n)
 
         Length n ->
-            "length=" ++ toString n
+            "length=" ++ (String.fromInt n)
 
         MinWordSizefor1Typo n ->
-            "minWordSizefor1Typo=" ++ toString n
+            "minWordSizefor1Typo=" ++ (String.fromInt n)
 
         MinWordSizefor2Typos n ->
-            "minWordSizefor2Typos=" ++ toString n
+            "minWordSizefor2Typos=" ++ (String.fromInt n)
 
         AroundPrecision n ->
-            "aroundPrecision=" ++ toString n
+            "aroundPrecision=" ++ (String.fromInt n)
 
         MinimumAroundRadius n ->
-            "minimumAroundRadius=" ++ toString n
+            "minimumAroundRadius=" ++ (String.fromInt n)
 
         MinProximity n ->
-            "minProximity=" ++ toString n
+            "minProximity=" ++ (String.fromInt n)
 
         MaxFacetHits n ->
-            "maxFacetHits=" ++ toString n
+            "maxFacetHits=" ++ (String.fromInt n)
 
         Distinct n ->
-            "distinct=" ++ toString n
+            "distinct=" ++ (String.fromInt n)
 
         DisableTypoToleranceOnAttributes ls ->
             "disableTypoToleranceOnAttributes=" ++ encodeList ls
@@ -340,7 +340,7 @@ getSearchString a =
                     "aroundRadius=all"
 
                 AroundRadiusInt n ->
-                    "aroundRadius=" ++ toString n
+                    "aroundRadius=" ++ (String.fromInt n)
 
         QueryType val ->
             case val of
@@ -392,15 +392,15 @@ getSearchString a =
 
 encodeList : List String -> String
 encodeList ls =
-    List.map Encode.string ls
-        |> Encode.list
+    ls
+        |> Encode.list Encode.string
         |> Encode.encode 0
 
 
 encodeFloatList : List Float -> String
 encodeFloatList ls =
-    List.map Encode.float ls
-        |> Encode.list
+    ls
+        |> Encode.list Encode.float
         |> Encode.encode 0
 
 
@@ -544,14 +544,13 @@ formRqst config =
 
                 requests =
                     a.requests
-                        |> List.map
-                            (\a ->
-                                Encode.object
-                                    [ ( "indexName", Encode.string a.indexName )
-                                    , ( "params", getParams a.params )
-                                    ]
-                            )
                         |> Encode.list
+                           (\i ->
+                                Encode.object
+                                [ ( "indexName", Encode.string i.indexName )
+                                , ( "params", getParams i.params )
+                                ]
+                           )
 
                 body =
                     Encode.object [ ( "requests", requests ), ( "strategy", Encode.string strategy ) ]
@@ -644,9 +643,8 @@ formRqst config =
                     case a.attributesToRetreive of
                         Just attr ->
                             attr
-                                |> List.map Encode.string
-                                |> Encode.list
-                                |> (\a -> [ ( "attributesToRetrieve", a ) ])
+                                |> Encode.list Encode.string
+                                |> (\atr -> [ ( "attributesToRetrieve", atr ) ])
 
                         Nothing ->
                             []
@@ -674,8 +672,7 @@ formRqst config =
                     case a.attributesToRetreive of
                         Just attr ->
                             attr
-                                |> List.map Encode.string
-                                |> Encode.list
+                                |> Encode.list Encode.string
                                 |> Encode.encode 0
                                 |> (++) "?attributes"
 

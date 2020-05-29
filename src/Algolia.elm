@@ -17,7 +17,7 @@ module Algolia
 -}
 
 import Algolia.Api as Api exposing (Method, formRqst)
-import Http exposing (request, send, expectString, Header, Error(..))
+import Http exposing (request, expectString, Header, Error(..))
 
 
 {-| Config
@@ -39,17 +39,16 @@ fetch config =
             formRqst config
 
         rqst =
-            request
-                { method = rqstRec.httpMethod
-                , headers = formatHeaders config
-                , url = rqstRec.url
-                , body = rqstRec.body
-                , expect = expectString
-                , timeout = Nothing
-                , withCredentials = False
-                }
+            { method = rqstRec.httpMethod
+            , headers = formatHeaders config
+            , url = rqstRec.url
+            , body = rqstRec.body
+            , expect = expectString Resp
+            , timeout = Nothing
+            , tracker = Nothing
+            }
     in
-    Http.send Resp rqst
+    Http.request rqst
 
 
 formatHeaders : Config -> List Header
@@ -96,10 +95,10 @@ getSearchResults msg =
                         NetworkError ->
                             "Network error"
 
-                        BadStatus resp ->
-                            toString resp.status.code ++ " " ++ resp.status.message
+                        BadStatus code ->
+                            (String.fromInt code)
 
-                        BadPayload str resp ->
+                        BadBody str ->
                             "Bad payload - " ++ str
             in
             FatalError status
