@@ -8,7 +8,6 @@ import Html.Attributes exposing (class, rows, disabled, readonly, src, style)
 import Html.Events exposing (onInput)
 import Json.Decode exposing (succeed, list, bool, int, string)
 import Json.Decode.Pipeline exposing (required)
-import Json.Encode as Encode
 import RemoteData exposing (RemoteData(..), WebData)
 
 
