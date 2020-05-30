@@ -2,6 +2,9 @@ module Algolia exposing
     ( Config
     , fetch
     , Response
+    , HighlightResult
+    , decode_highlightResult
+    , defaultHighlightResult
     )
 
 
@@ -10,7 +13,7 @@ module Algolia exposing
 
 # Helpers
 
-@docs Config, fetch, Msg
+@docs Config, fetch, Response, HighlightResult, decode_highlightResult, defaultHighlightResult
 
 -}
 
@@ -141,6 +144,11 @@ type alias Response hit =
     }
 
 
+{-| Decoder for the top level result.
+
+A client will need to write a decoder to decode the hits attribute, as
+this is index dependent.
+-}
 decodeResponse : Json.Decode.Decoder hit -> Json.Decode.Decoder (Response hit)
 decodeResponse decodeHit =
     succeed Response
@@ -153,3 +161,32 @@ decodeResponse decodeHit =
         |> required "exhaustiveNbHits" bool
         |> required "query" string
         |> required "params" string
+
+
+{-| JSON structure of a highlight.
+-}
+type alias HighlightResult =
+    { value : String
+    , matchLevel : String
+    , fullyHighlighted : Maybe Bool
+    , matchedWords : Maybe (List String)
+    }
+
+{-| Highlighted snippets decoder.
+-}
+decode_highlightResult : Json.Decode.Decoder HighlightResult
+decode_highlightResult =
+    Json.Decode.succeed HighlightResult
+        |> required "value" string
+        |> required "matchLevel" string
+        |> Json.Decode.Pipeline.optional "fullyHighlighted" (Json.Decode.nullable bool) Nothing
+        |> Json.Decode.Pipeline.optional "matchedWords" (Json.Decode.nullable (Json.Decode.list string)) Nothing
+
+
+defaultHighlightResult : HighlightResult
+defaultHighlightResult =
+    { value = ""
+    , matchLevel = "none"
+    , fullyHighlighted = Nothing
+    , matchedWords = Nothing
+    }

@@ -214,17 +214,9 @@ type alias Actor =
     }
 
 
-type alias HighlightResult =
-    { value : String
-    , matchLevel : String
-    , fullyHighlighted : Maybe Bool
-    , matchedWords : Maybe (List String)
-    }
-
-
 type alias Actor_highlightResult =
-    { name : Maybe HighlightResult
-    , alternative_name : Maybe HighlightResult
+    { name : Maybe Algolia.HighlightResult
+    , alternative_name : Maybe Algolia.HighlightResult
     }
 
 
@@ -240,26 +232,8 @@ decodeActor =
         |> required "_highlightResult" decodeActor_highlightResult
 
 
-decode_highlightResult : Json.Decode.Decoder HighlightResult
-decode_highlightResult =
-    Json.Decode.succeed HighlightResult
-        |> required "value" string
-        |> required "matchLevel" string
-        |> Json.Decode.Pipeline.optional "fullyHighlighted" (Json.Decode.nullable bool) Nothing
-        |> Json.Decode.Pipeline.optional "matchedWords" (Json.Decode.nullable (Json.Decode.list string)) Nothing
-
-
 decodeActor_highlightResult : Json.Decode.Decoder Actor_highlightResult
 decodeActor_highlightResult =
     Json.Decode.succeed Actor_highlightResult
-        |> required "name" (Json.Decode.nullable decode_highlightResult)
-        |> Json.Decode.Pipeline.optional "alternative_name" (Json.Decode.nullable decode_highlightResult) (Just defaultHighlightResult)
-
-
-defaultHighlightResult : HighlightResult
-defaultHighlightResult =
-    { value = ""
-    , matchLevel = "none"
-    , fullyHighlighted = Nothing
-    , matchedWords = Nothing
-    }
+        |> required "name" (Json.Decode.nullable Algolia.decode_highlightResult)
+        |> Json.Decode.Pipeline.optional "alternative_name" (Json.Decode.nullable Algolia.decode_highlightResult) (Just Algolia.defaultHighlightResult)
