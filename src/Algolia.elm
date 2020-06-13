@@ -3,7 +3,9 @@ module Algolia exposing
     , fetch
     , Response
     , HighlightResult
+    , SnippetResult
     , decode_highlightResult
+    , decode_snippetResult
     , defaultHighlightResult
     )
 
@@ -163,14 +165,28 @@ decodeResponse decodeHit =
         |> required "params" string
 
 
+type MatchLevel
+    = None
+    | Partial
+    | Full
+
+
 {-| JSON structure of a highlight.
 -}
 type alias HighlightResult =
     { value : String
-    , matchLevel : String
+    , matchLevel : MatchLevel
     , fullyHighlighted : Maybe Bool
     , matchedWords : Maybe (List String)
     }
+
+{-| JSON structure of a snippet.
+-}
+type alias SnippetResult =
+    { value : String
+    , matchLevel : MatchLevel
+    }
+
 
 {-| Highlighted snippets decoder.
 -}
@@ -178,15 +194,43 @@ decode_highlightResult : Json.Decode.Decoder HighlightResult
 decode_highlightResult =
     Json.Decode.succeed HighlightResult
         |> required "value" string
-        |> required "matchLevel" string
+        |> required "matchLevel" decodeMatchLevel
         |> Json.Decode.Pipeline.optional "fullyHighlighted" (Json.Decode.nullable bool) Nothing
         |> Json.Decode.Pipeline.optional "matchedWords" (Json.Decode.nullable (Json.Decode.list string)) Nothing
+
+
+{-| Highlighted snippets decoder.
+-}
+decode_snippetResult : Json.Decode.Decoder SnippetResult
+decode_snippetResult =
+    Json.Decode.succeed SnippetResult
+        |> required "value" string
+        |> required "matchLevel" decodeMatchLevel
+
+
+decodeMatchLevel : Json.Decode.Decoder MatchLevel
+decodeMatchLevel =
+    string
+        |> Json.Decode.map matchLevelFromString
+
+
+matchLevelFromString : String -> MatchLevel
+matchLevelFromString level =
+    case level of
+        "none" ->
+            None
+        "partial" ->
+            Partial
+        "full" ->
+            Full
+        _ ->
+            None
 
 
 defaultHighlightResult : HighlightResult
 defaultHighlightResult =
     { value = ""
-    , matchLevel = "none"
+    , matchLevel = None
     , fullyHighlighted = Nothing
     , matchedWords = Nothing
     }
