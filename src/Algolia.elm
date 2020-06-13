@@ -78,8 +78,6 @@ Then define a response with your specific result as parameter:
 
 And in your update function call `fetch` when some data has been typed in:
 
-    import Algolia
-
     Algolia.fetch (config "search text") AlgoliaResponse decodeActor
 
 The config function returns the authentication data and what index to search:
@@ -95,7 +93,7 @@ The config function returns the authentication data and what index to search:
 In your update function you can then handle the AlgoliaResponse msg as
 usual for RemoteData:
 
-        AlgoliaResults response ->
+        AlgoliaResponse response ->
             ( { model | algoliaResponse = response }, Cmd.none )
 
 
