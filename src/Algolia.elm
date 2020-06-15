@@ -4,6 +4,8 @@ module Algolia exposing
     , Response
     , HighlightResult
     , SnippetResult
+    , Facets
+    , Facet
     , decode_highlightResult
     , decode_snippetResult
     , defaultHighlightResult
@@ -20,10 +22,11 @@ module Algolia exposing
 -}
 
 import Algolia.Api as Api exposing (Method, formRqst)
+import Dict exposing (Dict)
 import Http exposing (request, expectJson, Header, Error(..))
 import RemoteData exposing (WebData)
-import Json.Decode exposing (succeed, list, bool, int, string)
-import Json.Decode.Pipeline exposing (required)
+import Json.Decode exposing (succeed, bool, dict, int, list, string)
+import Json.Decode.Pipeline exposing (optional, required)
 
 
 
@@ -131,6 +134,10 @@ formatHeaders config =
     headers ++ extraHeaders
 
 
+type alias Facets = Dict String Facet
+
+type alias Facet = (Dict String Int)
+
 type alias Response hit =
     { hits : List hit
     , nbHits : Int
@@ -141,6 +148,7 @@ type alias Response hit =
     , exhaustiveNbHits : Bool
     , query : String
     , params : String
+    , facets : Facets
     }
 
 
@@ -161,6 +169,18 @@ decodeResponse decodeHit =
         |> required "exhaustiveNbHits" bool
         |> required "query" string
         |> required "params" string
+        |> optional "facets" decodeFacets Dict.empty
+
+
+decodeFacets : Json.Decode.Decoder Facets
+decodeFacets =
+    dict decodeFacet
+
+
+decodeFacet : Json.Decode.Decoder Facet
+decodeFacet =
+    dict int
+
 
 
 type MatchLevel

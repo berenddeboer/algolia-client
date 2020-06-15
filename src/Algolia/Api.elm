@@ -4,6 +4,7 @@ module Algolia.Api
         ( AroundRadiusValue(..)
         , ExactOnSingleWordQueryValue(..)
         , FacetsValue(..)
+        , FacetFilterAndOr(..)
         , IgnorePluralsValue(..)
         , IndexOperation
         , Method(..)
@@ -46,7 +47,7 @@ type SearchParam
     | Filters String -- Filter the query with numeric, facet and/or tag filters.
     | Facets FacetsValue -- Facets to retrieve.
     | MaxValuesPerFacet Int -- Maximum number of facet values returned for each facet.
-    | FacetFilters (List String) -- Filter hits by facet value.
+    | FacetFilters (List FacetFilterAndOr) -- Filter hits by facet value.
     | FacetingAfterDistinct Bool -- Force faceting to be applied after de-duplication.
     | OptionalFilters (List String) -- Create filters for ranking purposes, to rank higher records that contain the filter(s)
     | SortFacetValuesBy String -- Controls how facet values are sorted.
@@ -103,6 +104,14 @@ type FacetsValue
     = FacetsStrings (List String)
     | FacetsAll
 
+
+{-| An entry in a facet filter list can either be a string (AND)
+meaning that value must occur, or a list (OR), meaning at least one
+entry in this list must occur.
+-}
+type FacetFilterAndOr
+    = FacetFilterAnd String
+    | FacetFilterOr (List String)
 
 {-| -}
 type ExactOnSingleWordQueryValue
@@ -181,7 +190,7 @@ getSearchString a =
             "maxValuesPerFacet=" ++ (String.fromInt n)
 
         FacetFilters ls ->
-            "facetFilters=" ++ encodeList ls
+            "facetFilters=" ++ encodeFacetFilterList ls
 
         FacetingAfterDistinct bool_ ->
             "facetingAfterDistinct=" ++ (Encode.bool bool_ |> Encode.encode 0)
@@ -404,6 +413,22 @@ encodeFloatList ls =
         |> Encode.encode 0
 
 
+encodeFacetFilterList : List FacetFilterAndOr -> String
+encodeFacetFilterList ls =
+    ls
+        |> Encode.list encodeFacetFilter
+        |> Encode.encode 0
+
+
+encodeFacetFilter : FacetFilterAndOr -> Encode.Value
+encodeFacetFilter andor =
+    case andor of
+        FacetFilterAnd a ->
+            Encode.string a
+        FacetFilterOr o ->
+            Encode.list Encode.string o
+
+                    
 
 -- Method related stuff
 
